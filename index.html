@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Welche Anrede soll ich auswählen?</title>
+    <style>
+        :root {
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: max(1rem, 20px);
+            accent-color: var(--accent-color);
+            accent-color: light dark;
+            --text-color: light-dark(#000, #fff);
+        }
+
+        .frau { --accent-color: light-dark(#f357ca, #ce30a8); }
+        .herr { --accent-color: light-dark(#479eff, #007df7); }
+
+        ::selection {
+            background-color: light-dark(oklch(from var(--accent-color) 0.9 c h), var(--accent-color));
+        }
+
+        h1, p, fieldset {
+            margin-bottom: 1rem;
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: min(4rem, max(10svmin, 2rem));
+            font-weight: 900;
+            text-wrap: pretty;
+            text-wrap: balance;
+        }
+
+        p {
+            line-height: 1.5;
+        }
+
+        main {
+            max-width: 30rem;
+            padding: 2rem 1rem;
+            margin: auto;
+        }
+
+        fieldset {
+            font-size: 1.5rem;
+            display: grid;
+            gap: .6ex;
+        }
+
+        fieldset label {
+            font-size: 1.5em;
+            font-weight: bold;
+            display: grid;
+            grid-auto-flow: column;
+            align-items: center;
+            justify-content: start;
+            gap: .4ex;
+        }
+
+        input {
+            font: inherit;
+            width: 1em;
+            height: 1em;
+        }
+
+        footer {
+            font-size: 0.6em;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Welche Anrede soll ich auswählen?</h1>
+        <p>
+            Na, Du bist nicht mit den zwei Anreden zufrieden in unserem Formular?
+            Kein Problem! Dieser <del>Zufallsgenerator</del> <ins>wissenschaftlich geprüfte Algorithmus</ins> hilft Dir weniger zu denken
+            und dich mehr in die Geschlechterbinarität einzufügen!
+        </p>
+        <fieldset>
+            <legend>Anrede</legend>
+            <label for="frau">
+                <input type="radio" id="frau" autocomplete="off" aria-readonly="true" />
+                Frau
+            </label>
+            <label for="herr">
+                <input type="radio" id="herr" autocomplete="off" aria-readonly="true" />
+                Herr
+            </label>
+        </fieldset>
+        <script type="module">
+          const flipCoin = () => Math.random() < 0.5;
+          const geschlecht = flipCoin();
+          const anrede = geschlecht ? "frau" : "herr";
+          const nichtDieAnrede = geschlecht ? "herr" : "frau";
+          document.getElementById(anrede).checked = true;
+          document.getElementById(nichtDieAnrede).disabled = true;
+          document.documentElement.classList.add(anrede);
+        </script>
+        <footer>
+            Ja, ich bin so ein verdammter lustiger Scherzkeks.<br>
+            Ja, es gibt <em>*wirklich*</em> Menschen die weder Mann noch Frau sind.<br>
+            Ja, dein Formular ist verdammt scheisse wenn es nur diese zwei Optionen hat.<br>
+            Ja, <em>*du*</em> bist scheisse wenn du dein bekacktes Formular nicht ändern möchtest.
+        </footer>
+    </main>
+</body>
+</html>
